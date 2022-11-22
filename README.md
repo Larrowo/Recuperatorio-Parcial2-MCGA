@@ -1,1 +1,0 @@
-# Recuperatorio-Parcial2-MCGA
