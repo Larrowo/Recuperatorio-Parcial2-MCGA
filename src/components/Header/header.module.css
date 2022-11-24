@@ -1,0 +1,54 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  min-height: 100px;
+  background-color: #1a1a1a;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5%;
+  min-height: 50px;
+  background-color: #1a1a1a;
+}
+
+.pageName {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.appName {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.routes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+.routes li {
+  margin-right: 15px;
+}
+
+.routes > li > a {
+  margin-left: 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #fff;
+}
+
+@media screen and (min-width: 750px) {
+  .navbar {
+    padding: 0 20%;
+  }
+}
