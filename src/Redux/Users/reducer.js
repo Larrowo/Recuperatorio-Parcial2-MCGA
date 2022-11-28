@@ -14,7 +14,7 @@ import {
 } from "./types";
 
 const INITIAL_STATE_VALUE = {
-  USERs: [],
+  users: [],
   isLoading: false,
   error: false,
   message: "",

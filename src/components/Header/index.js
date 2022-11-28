@@ -20,7 +20,7 @@ function Header() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/products">Products</Link>
+                <Link to="/Users">Users</Link>
               </li>
               <li>
                 <a href="https://github.com/Larrowo/MCGA-Segundo-Parcial">

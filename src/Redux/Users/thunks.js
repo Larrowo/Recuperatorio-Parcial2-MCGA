@@ -1,24 +1,24 @@
 import {
-  addProductSuccess,
-  addProductLoading,
-  addProductError,
-  editProductSuccess,
-  editProductLoading,
-  editProductError,
-  deleteProductSuccess,
-  deleteProductLoading,
-  deleteProductError,
-  getProductSuccess,
-  getProductLoading,
-  getProductError,
+  addUserSuccess,
+  addUserLoading,
+  addUserError,
+  editUserSuccess,
+  editUserLoading,
+  editUserError,
+  deleteUserSuccess,
+  deleteUserLoading,
+  deleteUserError,
+  getUserSuccess,
+  getUserLoading,
+  getUserError,
 } from "./actions";
 
-export const getProducts = () => {
+export const getUsers = () => {
   return async (dispatch) => {
-    dispatch(getProductLoading());
+    dispatch(getUserLoading());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/products`,
+        `${process.env.REACT_APP_API_URL}/api/Users`,
         {
           method: "GET",
           headers: new Headers({ "Content-type": "application/json" }),
@@ -26,38 +26,38 @@ export const getProducts = () => {
         }
       );
       const json = await response.json();
-      dispatch(getProductSuccess(json.data));
+      dispatch(getUserSuccess(json.data));
       console.log(json);
     } catch (error) {
-      dispatch(getProductError(error.toString()));
+      dispatch(getUserError(error.toString()));
     }
   };
 };
 
-export const deleteProducts = (id) => {
+export const deleteUsers = (id) => {
   return async (dispatch) => {
-    dispatch(deleteProductLoading());
+    dispatch(deleteUserLoading());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/product/delete/${id}`,
+        `${process.env.REACT_APP_API_URL}/User/delete/${id}`,
         {
           method: "DELETE",
         }
       );
       const json = await response.json();
-      dispatch(deleteProductSuccess(json.data));
+      dispatch(deleteUserSuccess(json.data));
     } catch (error) {
-      dispatch(deleteProductError(error.toString()));
+      dispatch(deleteUserError(error.toString()));
     }
   };
 };
 
-export const postProducts = (name, description, price, stock) => {
+export const postUsers = (name, description, price, stock) => {
   return async (dispatch) => {
-    dispatch(addProductLoading());
+    dispatch(addUserLoading());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/product/add`,
+        `${process.env.REACT_APP_API_URL}/User/add`,
         {
           method: "POST",
           headers: {
@@ -74,25 +74,25 @@ export const postProducts = (name, description, price, stock) => {
       );
       const json = await response.json();
       if (response.status === 201) {
-        dispatch(addProductSuccess(json.data));
-        console.log("Product added");
+        dispatch(addUserSuccess(json.data));
+        console.log("User added");
       } else {
-        //dispatch(postProductsError(error.toString()));
-        console.log("Product could not be Added.");
+        //dispatch(postUsersError(error.toString()));
+        console.log("User could not be Added.");
       }
     } catch (error) {
-      dispatch(addProductError(error.toString()));
-      console.log("Product could not be Added.");
+      dispatch(addUserError(error.toString()));
+      console.log("User could not be Added.");
     }
   };
 };
 
-export const editProducts = (id, name, description, price, stock) => {
+export const editUsers = (id, name, description, price, stock) => {
   return async (dispatch) => {
-    dispatch(editProductLoading());
+    dispatch(editUserLoading());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/product/update/${id}`,
+        `${process.env.REACT_APP_API_URL}/User/update/${id}`,
         {
           method: "PUT",
           headers: {
@@ -109,15 +109,15 @@ export const editProducts = (id, name, description, price, stock) => {
       );
       const json = await response.json();
       if (response.status === 202) {
-        dispatch(editProductSuccess(json.data));
-        console.log("Product Added.");
+        dispatch(editUserSuccess(json.data));
+        console.log("User Added.");
       } else {
-        //dispatch(postProductsError(error.toString()));
-        console.log("Product could not be Added.");
+        //dispatch(postUsersError(error.toString()));
+        console.log("User could not be Added.");
       }
     } catch (error) {
-      dispatch(editProductError(error.toString()));
-      console.log("Product could not be Added.");
+      dispatch(editUserError(error.toString()));
+      console.log("User could not be Added.");
     }
   };
 };
