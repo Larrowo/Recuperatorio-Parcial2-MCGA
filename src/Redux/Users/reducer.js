@@ -34,7 +34,7 @@ const usersReducer = (state = INITIAL_STATE_VALUE, action) => {
         ...state,
         isLoading: false,
         error: false,
-        message: action.payload,
+        users: [...state.list, action.payload],
       };
     case ADD_USER_ERROR:
       return {
@@ -53,13 +53,13 @@ const usersReducer = (state = INITIAL_STATE_VALUE, action) => {
       return {
         ...state,
         isLoading: false,
-        USERs: action.payload,
+        users: action.payload,
       };
     case GET_USERS_ERROR:
       return {
         ...state,
         isLoading: false,
-        message: action.payload,
+        error: action.payload,
       };
     case EDIT_USER_LOADING:
       return {
@@ -72,7 +72,7 @@ const usersReducer = (state = INITIAL_STATE_VALUE, action) => {
         ...state,
         isLoading: false,
         error: false,
-        message: action.payload,
+        users: action.payload,
       };
     case EDIT_USER_ERROR:
       return {
@@ -91,8 +91,8 @@ const usersReducer = (state = INITIAL_STATE_VALUE, action) => {
         ...state,
         isLoading: false,
         error: false,
-        USERs: [...state.list.filter((USER) => USER._id !== action.payload)],
-        message: "Project deleted Successfully",
+        users: [...state.list.filter((USER) => USER._id !== action.payload)],
+        message: "User deleted Successfully",
       };
     case DELETE_USER_ERROR:
       return {

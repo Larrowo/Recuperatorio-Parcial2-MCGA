@@ -21,14 +21,20 @@ export const getUsers = () => {
         `${process.env.REACT_APP_API_URL}/api/Users`,
         {
           method: "GET",
-          headers: new Headers({ "Content-type": "application/json" }),
-          mode: "no-cors",
+          headers: { "Access-Control-Allow-Origin": "*" },
+          mode: "cors",
         }
       );
       const json = await response.json();
-      dispatch(getUserSuccess(json.data));
-      console.log(json);
+      console.log("KINDA WORKING", json);
+      if (response.status !== 200) {
+        dispatch(getUserError(json.toString()));
+      } else {
+        dispatch(getUserSuccess(json));
+        console.log("WORKING");
+      }
     } catch (error) {
+      console.log(error, "ESTE ES EL ERROR");
       dispatch(getUserError(error.toString()));
     }
   };
@@ -52,12 +58,21 @@ export const deleteUsers = (id) => {
   };
 };
 
-export const postUsers = (name, description, price, stock) => {
+export const postUsers = (
+  name,
+  surname,
+  birthDate,
+  DNI,
+  age,
+  nationality,
+  email,
+  password
+) => {
   return async (dispatch) => {
     dispatch(addUserLoading());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/User/add`,
+        `${process.env.REACT_APP_API_URL}/api/Users`,
         {
           method: "POST",
           headers: {
@@ -66,21 +81,28 @@ export const postUsers = (name, description, price, stock) => {
           },
           body: JSON.stringify({
             name: name,
-            description: description,
-            price: price,
-            stock: stock,
+            surname: surname,
+            birthDate: birthDate,
+            DNI: DNI,
+            age: age,
+            nationality: nationality,
+            email: email,
+            password: password,
           }),
         }
       );
       const json = await response.json();
+      console.log(json);
+
       if (response.status === 201) {
-        dispatch(addUserSuccess(json.data));
+        dispatch(addUserSuccess(json));
         console.log("User added");
       } else {
-        //dispatch(postUsersError(error.toString()));
+        dispatch(addUserError(json));
         console.log("User could not be Added.");
       }
     } catch (error) {
+      console.log(error);
       dispatch(addUserError(error.toString()));
       console.log("User could not be Added.");
     }

@@ -5,8 +5,8 @@ function Footer() {
   return (
     <footer className={styles.container}>
       <div className={styles.names}>
-        <p>MCGA - Parcial 2</p>
-        <p>Paladini Franco - Astudillo Julián</p>
+        <p>MCGA - Recuperatorio parcial 2</p>
+        <p>Astudillo Julián</p>
       </div>
     </footer>
   );
